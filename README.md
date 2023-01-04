@@ -1,3 +1,7 @@
+# Notes
+- start branch names with "[first name]-"
+- I think you have to install node.js (will add more since i probably forgot something)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

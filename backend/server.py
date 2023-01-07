@@ -29,10 +29,12 @@ for i in range (len(games)):
     game_data[i] = {
         "gameStatus": (games[i])['gameStatusText'],
         "awayTeamData": {
+            "id": (games[i])['awayTeam']['teamId'],
             "name": (games[i])['awayTeam']['teamName'],
             "score": (games[i])['awayTeam']['score']
             }, 
         "homeTeamData": {
+            "id": (games[i])['homeTeam']['teamId'],
             "name": (games[i])['homeTeam']['teamName'],
             "score": (games[i])['homeTeam']['score']
             }, 
@@ -52,7 +54,7 @@ def get_time():
     # Returning an api for showing in  reactjs
     return {
         "games": json.dumps(game_data),
-        #"details": games_json 
+        # "details": games_json 
     }
   
       

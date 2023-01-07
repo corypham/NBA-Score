@@ -7,10 +7,12 @@ function App() {
    // new line start
   const [gameData, setGameScores] = useState(null);
 
+  let today = new Date().toLocaleDateString();
+
   useEffect(() => {
     axios({
       method: "GET",
-      url:"http://localhost:3000/data",
+      url:"/data",
     })
     .then((response) => {
       const res = response.data
@@ -29,21 +31,28 @@ function App() {
 
   return (
     <div className="App">
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,800&family=Quicksand&display=swap" rel="stylesheet"></link>
       <header className="App-header">
-        {gameData && (gameData.games).map((game) => (
-          <div className="game">
-              <div className="vs">{game.awayTeamData.name} v {game.homeTeamData.name}</div>
-              <div className="teamA">
-                <div className="name">{game.awayTeamData.name}</div>
-                <div className="score">{game.awayTeamData.score}</div>
-              </div>
-              <div className="teamB">
-                <div className="name">{game.homeTeamData.name}</div>
-                <div className="score">{game.homeTeamData.score}</div>
-              </div>
-              <div className="gametatus">{game.gameStatus}</div>
-              </div>
-        ))}
+        <div className="games">
+          <div className="date">{today}</div>
+          {gameData && (gameData.games).map((game) => (
+            <div className="game">
+                <div className="vs teamName">{game.awayTeamData.name} v {game.homeTeamData.name}</div>
+                <div className="teams">
+                  <div className="teamA team">
+                    <div className="name teamName">{game.awayTeamData.name}</div>
+                    <div className="score">{game.awayTeamData.score}</div>
+                  </div>
+                  <div className="vl"></div>
+                  <div className="teamB team">
+                    <div className="name teamName">{game.homeTeamData.name}</div>
+                    <div className="score">{game.homeTeamData.score}</div>
+                  </div>
+                </div>
+                <div className="gametatus">{game.gameStatus}</div>
+            </div>
+          ))}
+        </div>
       </header>
     </div>
   );

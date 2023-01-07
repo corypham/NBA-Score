@@ -40,11 +40,13 @@ function App() {
                 <div className="vs teamName">{game.awayTeamData.name} v {game.homeTeamData.name}</div>
                 <div className="teams">
                   <div className="teamA team">
+                    <img className="logo" src={require(`./assets/${game.awayTeamData.logoURL}.png`)} alt=""/>
                     <div className="name teamName">{game.awayTeamData.name}</div>
                     <div className="score">{game.awayTeamData.score}</div>
                   </div>
                   <div className="vl"></div>
                   <div className="teamB team">
+                    <img className="logo" src={require(`./assets/${game.homeTeamData.logoURL}.png`)} alt=""/>
                     <div className="name teamName">{game.homeTeamData.name}</div>
                     <div className="score">{game.homeTeamData.score}</div>
                   </div>

@@ -56,6 +56,10 @@
   flex-direction: column;
 }
 
+.logo {
+  height: 100px;
+}
+
 .vl {
   border-left: 1px solid black;
   height: 100px;

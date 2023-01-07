@@ -29,16 +29,18 @@ for i in range (len(games)):
     game_data[i] = {
         "gameStatus": (games[i])['gameStatusText'],
         "awayTeamData": {
-            "id": (games[i])['awayTeam']['teamId'],
+            # "logoURL": './assets/' + (games[i])['awayTeam']['teamTricode'] + '.png',
+            "logoURL": (games[i])['awayTeam']['teamTricode'],
             "name": (games[i])['awayTeam']['teamName'],
             "score": (games[i])['awayTeam']['score']
             }, 
         "homeTeamData": {
-            "id": (games[i])['homeTeam']['teamId'],
+            "logoURL": (games[i])['homeTeam']['teamTricode'],
             "name": (games[i])['homeTeam']['teamName'],
             "score": (games[i])['homeTeam']['score']
             }, 
         }
+    print("hello world", game_data[i]['awayTeamData']['logoURL'])
 
 # tzinfos = {"BRST": -7200, "CST": gettz("America/Cupertino")}
 # for game in games:
@@ -46,13 +48,18 @@ for i in range (len(games)):
 #     print(f.format(gameId=game['gameId'], awayTeam=game['awayTeam']['teamName'], homeTeam=game['homeTeam']['teamName'], gameTimeLTZ=gameTimeLTZ))
 
 # games_json = games.get_json()
-  
+
+from nba_api.stats.static import teams
+
+nba_teams = teams.get_teams()
+
 # Route for seeing a data
 @app.route('/data')
 def get_time():
   
     # Returning an api for showing in  reactjs
     return {
+        # "teams": nba_teams,
         "games": json.dumps(game_data),
         # "details": games_json 
     }

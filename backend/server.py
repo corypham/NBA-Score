@@ -1,8 +1,6 @@
 # Import flask and datetime module for showing date and time
 from flask import Flask
-import datetime
-  
-x = datetime.datetime.now()
+import json
   
 # Initializing flask app
 app = Flask(__name__)
@@ -10,11 +8,42 @@ app = Flask(__name__)
 # flask
 from nba_api.live.nba.endpoints import scoreboard
 
-# Today's Score Board
-games = scoreboard.ScoreBoard()
+# # Today's Score Board
+# games = scoreboard.ScoreBoard()
 
-# json
-games_json = games.get_json()
+# # json
+# games_json = games.get_json()
+
+from datetime import datetime, timezone
+from dateutil import parser
+from dateutil.tz import gettz
+
+f = "{gameId}: {awayTeam} vs. {homeTeam}" 
+board = scoreboard.ScoreBoard()
+print("ScoreBoardDate: " + board.score_board_date)
+games = board.games.get_dict()
+games_json = board.games.get_json()
+game_data = [{}] * len(games)
+# game_data = {}
+for i in range (len(games)):
+    game_data[i] = {
+        "gameStatus": (games[i])['gameStatusText'],
+        "awayTeamData": {
+            "name": (games[i])['awayTeam']['teamName'],
+            "score": (games[i])['awayTeam']['score']
+            }, 
+        "homeTeamData": {
+            "name": (games[i])['homeTeam']['teamName'],
+            "score": (games[i])['homeTeam']['score']
+            }, 
+        }
+
+# tzinfos = {"BRST": -7200, "CST": gettz("America/Cupertino")}
+# for game in games:
+#     gameTimeLTZ = parser.parse(game["gameTimeUTC"], tzinfo=timezone.utc).replace(tzinfo=timezone.utc).astimezone(tz=None)
+#     print(f.format(gameId=game['gameId'], awayTeam=game['awayTeam']['teamName'], homeTeam=game['homeTeam']['teamName'], gameTimeLTZ=gameTimeLTZ))
+
+# games_json = games.get_json()
   
 # Route for seeing a data
 @app.route('/data')
@@ -22,7 +51,8 @@ def get_time():
   
     # Returning an api for showing in  reactjs
     return {
-        "games":games_json
+        "games": json.dumps(game_data),
+        #"details": games_json 
     }
   
       

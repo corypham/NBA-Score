@@ -5,7 +5,7 @@ import './App.css';
 function App() {
 
    // new line start
-  const [games, setGameScores] = useState(null);
+  const [gameData, setGameScores] = useState(null);
 
   useEffect(() => {
     axios({
@@ -15,9 +15,9 @@ function App() {
     .then((response) => {
       const res = response.data
       setGameScores(({
-        games: res.games,
+        games: JSON.parse(res.games),
       }))
-      console.log(res);
+      console.log(res.games);
     }).catch((error) => {
       if (error.response) {
         console.log(error.response)
@@ -30,10 +30,20 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {games && <div>
-              <p>games: {games.games}</p>
-            </div>
-        }
+        {gameData && (gameData.games).map((game) => (
+          <div className="game">
+              <div className="vs">{game.awayTeamData.name} v {game.homeTeamData.name}</div>
+              <div className="teamA">
+                <div className="name">{game.awayTeamData.name}</div>
+                <div className="score">{game.awayTeamData.score}</div>
+              </div>
+              <div className="teamB">
+                <div className="name">{game.homeTeamData.name}</div>
+                <div className="score">{game.homeTeamData.score}</div>
+              </div>
+              <div className="gametatus">{game.gameStatus}</div>
+              </div>
+        ))}
       </header>
     </div>
   );

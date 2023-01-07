@@ -5,19 +5,21 @@ import './App.css';
 function App() {
 
    // new line start
-  const [games, setGameScores] = useState(null);
+  const [gameData, setGameScores] = useState(null);
+
+  let today = new Date().toLocaleDateString();
 
   useEffect(() => {
     axios({
       method: "GET",
-      url:"http://localhost:3000/data",
+      url:"/data",
     })
     .then((response) => {
       const res = response.data
       setGameScores(({
-        games: res.games,
+        games: JSON.parse(res.games),
       }))
-      console.log(res);
+      console.log(res.games);
     }).catch((error) => {
       if (error.response) {
         console.log(error.response)
@@ -29,11 +31,28 @@ function App() {
 
   return (
     <div className="App">
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,800&family=Quicksand&display=swap" rel="stylesheet"></link>
       <header className="App-header">
-        {games && <div>
-              <p>games: {games.games}</p>
+        <div className="games">
+          <div className="date">{today}</div>
+          {gameData && (gameData.games).map((game) => (
+            <div className="game">
+                <div className="vs teamName">{game.awayTeamData.name} v {game.homeTeamData.name}</div>
+                <div className="teams">
+                  <div className="teamA team">
+                    <div className="name teamName">{game.awayTeamData.name}</div>
+                    <div className="score">{game.awayTeamData.score}</div>
+                  </div>
+                  <div className="vl"></div>
+                  <div className="teamB team">
+                    <div className="name teamName">{game.homeTeamData.name}</div>
+                    <div className="score">{game.homeTeamData.score}</div>
+                  </div>
+                </div>
+                <div className="gametatus">{game.gameStatus}</div>
             </div>
-        }
+          ))}
+        </div>
       </header>
     </div>
   );

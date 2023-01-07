@@ -2,37 +2,61 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
-  background-color: #282c34;
+
+}
+
+.games {
+  background-color: #E5E5E5;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: black;
 }
 
-.App-link {
-  color: #61dafb;
+.game {
+  background-color: white;
+  border-radius: 40px;
+  width: 70%;
+  margin: 2.5%;
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.teamName {
+  font-family: Poppins;
+  font-size: 200%;
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: 0em;
+  display: flex;
+}
+
+.score {
+  font-family: Quicksand;
+  font-size: 200%;
+  font-weight: 400;
+  letter-spacing: 0em;
+  display: flex;
+}
+
+.teams {
+  flex-direction: row;
+  display: flex;
+  justify-content: space-around;
+}
+
+.team {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.vl {
+  border-left: 1px solid black;
+  height: 100px;
 }

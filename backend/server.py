@@ -44,6 +44,15 @@ def fetch():
         print("hello world", game_data[i]['awayTeamData']['logoURL'])
     return game_data
 
+# get past games
+from nba_api.stats.endpoints import leaguegamefinder
+def get_past_games():
+    print("WIP")
+
+# get future matchups
+def get_future_matchups():
+    print("WIP")
+
 # tzinfos = {"BRST": -7200, "CST": gettz("America/Cupertino")}
 # for game in games:
 #     gameTimeLTZ = parser.parse(game["gameTimeUTC"], tzinfo=timezone.utc).replace(tzinfo=timezone.utc).astimezone(tz=None)

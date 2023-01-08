@@ -3,13 +3,12 @@ import Scores from './scores.js';
 import axios from "axios";
 import './App.css';
 
-function App() {
+function LiveData() {
 
    // new line start
   const [gameData, setGameScores] = useState(null);
 
   let today = new Date().toLocaleDateString();
-  let new_date = new Date(today);
 
   function get_live_data() {
     axios({
@@ -50,4 +49,4 @@ function App() {
   );
 }
 
-export default App;
+export default LiveData;

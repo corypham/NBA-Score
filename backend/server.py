@@ -18,29 +18,31 @@ from datetime import datetime, timezone
 from dateutil import parser
 from dateutil.tz import gettz
 
-f = "{gameId}: {awayTeam} vs. {homeTeam}" 
-board = scoreboard.ScoreBoard()
-print("ScoreBoardDate: " + board.score_board_date)
-games = board.games.get_dict()
-games_json = board.games.get_json()
-game_data = [{}] * len(games)
-# game_data = {}
-for i in range (len(games)):
-    game_data[i] = {
-        "gameStatus": (games[i])['gameStatusText'],
-        "awayTeamData": {
-            # "logoURL": './assets/' + (games[i])['awayTeam']['teamTricode'] + '.png',
-            "logoURL": (games[i])['awayTeam']['teamTricode'],
-            "name": (games[i])['awayTeam']['teamName'],
-            "score": (games[i])['awayTeam']['score']
-            }, 
-        "homeTeamData": {
-            "logoURL": (games[i])['homeTeam']['teamTricode'],
-            "name": (games[i])['homeTeam']['teamName'],
-            "score": (games[i])['homeTeam']['score']
-            }, 
-        }
-    print("hello world", game_data[i]['awayTeamData']['logoURL'])
+def fetch():
+    f = "{gameId}: {awayTeam} vs. {homeTeam}" 
+    board = scoreboard.ScoreBoard()
+    print("ScoreBoardDate: " + board.score_board_date)
+    games = board.games.get_dict()
+    games_json = board.games.get_json()
+    game_data = [{}] * len(games)
+    # game_data = {}
+    for i in range (len(games)):
+        game_data[i] = {
+            "gameStatus": (games[i])['gameStatusText'],
+            "awayTeamData": {
+                # "logoURL": './assets/' + (games[i])['awayTeam']['teamTricode'] + '.png',
+                "logoURL": (games[i])['awayTeam']['teamTricode'],
+                "name": (games[i])['awayTeam']['teamName'],
+                "score": (games[i])['awayTeam']['score']
+                }, 
+            "homeTeamData": {
+                "logoURL": (games[i])['homeTeam']['teamTricode'],
+                "name": (games[i])['homeTeam']['teamName'],
+                "score": (games[i])['homeTeam']['score']
+                }, 
+            }
+        print("hello world", game_data[i]['awayTeamData']['logoURL'])
+    return game_data
 
 # tzinfos = {"BRST": -7200, "CST": gettz("America/Cupertino")}
 # for game in games:
@@ -56,7 +58,7 @@ nba_teams = teams.get_teams()
 # Route for seeing a data
 @app.route('/data')
 def get_time():
-  
+    game_data = fetch()
     # Returning an api for showing in  reactjs
     return {
         # "teams": nba_teams,

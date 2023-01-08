@@ -8,8 +8,9 @@ function App() {
   const [gameData, setGameScores] = useState(null);
 
   let today = new Date().toLocaleDateString();
+  let new_date = new Date(today);
 
-  useEffect(() => {
+  function get_live_data() {
     axios({
       method: "GET",
       url:"/data",
@@ -27,6 +28,10 @@ function App() {
         console.log(error.response.headers)
       }
     })
+  }
+
+  useEffect(() => {
+    get_live_data();
   }, []);
 
   return (

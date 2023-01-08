@@ -6,26 +6,19 @@ import json
 app = Flask(__name__)
 
 # flask
-from nba_api.live.nba.endpoints import scoreboard
-
-# # Today's Score Board
-# games = scoreboard.ScoreBoard()
-
-# # json
-# games_json = games.get_json()
 
 from datetime import datetime, timezone
 from dateutil import parser
 from dateutil.tz import gettz
 
+# fetch live data
+from nba_api.live.nba.endpoints import scoreboard
 def fetch():
-    f = "{gameId}: {awayTeam} vs. {homeTeam}" 
     board = scoreboard.ScoreBoard()
     print("ScoreBoardDate: " + board.score_board_date)
     games = board.games.get_dict()
-    games_json = board.games.get_json()
+    # games_json = board.games.get_json()
     game_data = [{}] * len(games)
-    # game_data = {}
     for i in range (len(games)):
         game_data[i] = {
             "gameStatus": (games[i])['gameStatusText'],
@@ -53,24 +46,11 @@ def get_past_games():
 def get_future_matchups():
     print("WIP")
 
-# tzinfos = {"BRST": -7200, "CST": gettz("America/Cupertino")}
-# for game in games:
-#     gameTimeLTZ = parser.parse(game["gameTimeUTC"], tzinfo=timezone.utc).replace(tzinfo=timezone.utc).astimezone(tz=None)
-#     print(f.format(gameId=game['gameId'], awayTeam=game['awayTeam']['teamName'], homeTeam=game['homeTeam']['teamName'], gameTimeLTZ=gameTimeLTZ))
-
-# games_json = games.get_json()
-
-from nba_api.stats.static import teams
-
-nba_teams = teams.get_teams()
-
 # Route for seeing a data
 @app.route('/data')
 def get_time():
     game_data = fetch()
-    # Returning an api for showing in  reactjs
     return {
-        # "teams": nba_teams,
         "games": json.dumps(game_data),
         # "details": games_json 
     }

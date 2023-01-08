@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react'
 import Scores from './scores.js';
 import axios from "axios";
-import './App.css';
+import './live_data.css';
 
 function LiveData() {
 
@@ -35,17 +35,12 @@ function LiveData() {
   }, []);
 
   return (
-    <div className="App">
-      <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,800&family=Quicksand&display=swap" rel="stylesheet"></link>
-      <header className="App-header">
-        <div className="games">
+        <div className="liveData">
           <div className="date">{today}</div>
           {gameData && (gameData.games).map((game) => (
             <Scores game={game} />
           ))}
         </div>
-      </header>
-    </div>
   );
 }
 

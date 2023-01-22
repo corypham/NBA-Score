@@ -3,7 +3,7 @@ import Scores from './scores.js';
 import axios from "axios";
 import './live_data.css';
 
-function LiveData() {
+function PastGames() {
 
    // new line start
   const [gameData, setGameScores] = useState(null);
@@ -13,7 +13,7 @@ function LiveData() {
   function get_live_data() {
     axios({
       method: "GET",
-      url:"/data/live",
+      url:"/data/past",
     })
     .then((response) => {
       const res = response.data
@@ -44,4 +44,4 @@ function LiveData() {
   );
 }
 
-export default LiveData;
+export default PastGames;

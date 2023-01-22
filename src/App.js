@@ -1,6 +1,5 @@
 import { React, useState, useEffect } from 'react'
 import LiveData from './live_data.js';
-import axios from "axios";
 import './App.css';
 
 function App() {

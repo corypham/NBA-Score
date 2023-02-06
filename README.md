@@ -1,12 +1,10 @@
 # Notes
 - start branch names with "[first name]-"
-- I think you have to install node.js (will add more since i probably forgot something)
-- You also need python and flask (pip install flask)
-- create a virtual environment in /backend
-- py -m venv env
-- .\env\Scripts\activate
-- pip install python-dotenv
-- flask run
+- Setup guide: https://docs.google.com/document/d/11pSa0CDOkddnlXhQD2_XkblESNOpaOpD40cc9Yef2D4/edit
+- Airtable (tasks): https://airtable.com/appGG9DyunLRPAG06/tbleocZ18omaesePA/viwzIUzH5EaNvwiyZ?blocks=hide
+- Figma (design): https://www.figma.com/file/tnVeNgcaX7KmKaHoXHsK7E/winter-project?node-id=0%3A1&t=mxSor2YgfduxUmX0-0
+
+- Guide to Flexbox (for CSS): https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
 
 # Getting Started with Create React App

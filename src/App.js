@@ -1,5 +1,7 @@
 import { React, useState, useEffect } from 'react'
 import LiveData from './live_data.js';
+import PastGames from './past_games.js';
+import FutureMatchups from './future_matchups.js';
 import './App.css';
 
 function App() {
@@ -34,8 +36,8 @@ function App() {
             </select>
           </div>
           {game_type==='live' && <LiveData />}
-          {game_type==='past' && <div>past</div>}
-          {game_type==='future' && <div>future</div>}
+          {game_type==='past' && <PastGames />}
+          {game_type==='future' && <FutureMatchups />}
         </div>
       </header>
     </div>

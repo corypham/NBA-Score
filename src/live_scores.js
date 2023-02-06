@@ -1,8 +1,8 @@
 import { React, useState, useEffect } from 'react'
 import axios from "axios";
-import './scores.css';
+import './live_scores.css';
 
-function Scores(props) {
+function LiveScores(props) {
   return (
             <div className="game">
                 <div className="vs teamName">{props.game.awayTeamData.name} v {props.game.homeTeamData.name}</div>
@@ -19,9 +19,9 @@ function Scores(props) {
                     <div className="score">{props.game.homeTeamData.score}</div>
                   </div>
                 </div>
-                <div className="gameDate">{props.game.gameDate}</div>
+                <div className="gameStatus">{props.game.gameStatus}</div>
             </div>
   );
 }
 
-export default Scores;
+export default LiveScores;

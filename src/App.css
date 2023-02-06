@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  display: flex;
 }
 
 .App-header {
@@ -15,5 +16,4 @@
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: black;
-    width: 100%
 }

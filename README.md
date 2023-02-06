@@ -1,7 +1,7 @@
 # Notes
 - start branch names with "[first name]-"
 - Setup guide: https://docs.google.com/document/d/11pSa0CDOkddnlXhQD2_XkblESNOpaOpD40cc9Yef2D4/edit
-- Airtable (tasks): https://airtable.com/appGG9DyunLRPAG06/tbleocZ18omaesePA/viwzIUzH5EaNvwiyZ?blocks=hide
+- Trello (tasks): https://trello.com/b/2YL7jXxF/team-yosemite
 - Figma (design): https://www.figma.com/file/tnVeNgcaX7KmKaHoXHsK7E/winter-project?node-id=0%3A1&t=mxSor2YgfduxUmX0-0
 - Google Drive (misc): https://drive.google.com/drive/u/0/folders/1rMOjpth7AV-Gj8IPHVttdzXdti4Gxlps
 

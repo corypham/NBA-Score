@@ -3,6 +3,7 @@
 - Setup guide: https://docs.google.com/document/d/11pSa0CDOkddnlXhQD2_XkblESNOpaOpD40cc9Yef2D4/edit
 - Airtable (tasks): https://airtable.com/appGG9DyunLRPAG06/tbleocZ18omaesePA/viwzIUzH5EaNvwiyZ?blocks=hide
 - Figma (design): https://www.figma.com/file/tnVeNgcaX7KmKaHoXHsK7E/winter-project?node-id=0%3A1&t=mxSor2YgfduxUmX0-0
+- Google Drive (misc): https://drive.google.com/drive/u/0/folders/1rMOjpth7AV-Gj8IPHVttdzXdti4Gxlps
 
 - Guide to Flexbox (for CSS): https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 - endpoints: https://github.com/swar/nba_api/tree/master/docs/nba_api/stats/endpoints

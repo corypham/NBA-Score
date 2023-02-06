@@ -1,19 +1,19 @@
 import { React, useState, useEffect } from 'react'
 import Scores from './scores.js';
 import axios from "axios";
-import './live_data.css'; // change this later
+import './live_data.css'; //change this later
 
-function PastGames() {
+function FutureMatchups() {
 
    // new line start
   const [gameData, setGameScores] = useState(null);
 
   let today = new Date().toLocaleDateString();
 
-  function get_past_games() {
+  function get_future_matchups() {
     axios({
       method: "GET",
-      url:"/data/past",
+      url:"/data/future",
     })
     .then((response) => {
       const res = response.data
@@ -31,11 +31,11 @@ function PastGames() {
   }
 
   useEffect(() => {
-    get_past_games();
+    get_future_matchups();
   }, []);
 
   return (
-        <div className="pastGames">
+        <div className="futureMatchups">
           <div className="date">{today}</div>
           {gameData && (gameData.games).map((games_now) => (
             (games_now.game_data).map((game) => (
@@ -46,4 +46,4 @@ function PastGames() {
   );
 }
 
-export default PastGames;
+export default FutureMatchups;

@@ -60,9 +60,9 @@ from nba_api.stats.static import teams
 from nba_api.stats.endpoints import scoreboard as board_of_scores
 def get_past_games():
     today = date.today()
-    past_game_data = [{}] * 7
+    past_game_data = [{}] * 1
 
-    for d in range (0, 7):
+    for d in range (0, 1):
         num_offset = (d * (-1)) - 1
         board = board_of_scores.Scoreboard(day_offset=num_offset)
         past_games = board.get_normalized_dict()
@@ -104,9 +104,9 @@ def get_past_data():
 # get future matchups
 def get_future_matchups():
     today = date.today()
-    future_game_data = [{}] * 7
+    future_game_data = [{}] * 1
 
-    for d in range (0, 7):
+    for d in range (0, 1):
         num_offset = d + 1
         board = board_of_scores.Scoreboard(day_offset=num_offset)
         future_games = board.get_normalized_dict()

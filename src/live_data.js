@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react'
-import Scores from './scores.js';
+import LiveScores from './live_scores.js';
 import axios from "axios";
 import './live_data.css';
 
@@ -38,7 +38,7 @@ function LiveData() {
         <div className="liveData">
           <div className="date">{today}</div>
           {gameData && (gameData.games).map((game) => (
-            <Scores game={game} />
+            <LiveScores game={game} />
           ))}
         </div>
   );

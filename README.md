@@ -5,6 +5,7 @@
 - Figma (design): https://www.figma.com/file/tnVeNgcaX7KmKaHoXHsK7E/winter-project?node-id=0%3A1&t=mxSor2YgfduxUmX0-0
 
 - Guide to Flexbox (for CSS): https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+- endpoints: https://github.com/swar/nba_api/tree/master/docs/nba_api/stats/endpoints
 
 
 # Getting Started with Create React App

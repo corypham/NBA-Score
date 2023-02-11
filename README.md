@@ -1,4 +1,4 @@
-#Credit
+# Credit
 - To SportsLogos.Net for the team logos and nba logos and other images and stuff
 
 # Notes

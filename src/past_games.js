@@ -8,7 +8,7 @@ function PastGames() {
    // new line start
   const [gameData, setGameScores] = useState(null);
 
-  let today = new Date().toLocaleDateString();
+  let yesterday = new Date().toLocaleDateString() - 1;
 
   function get_past_games() {
     axios({
@@ -36,7 +36,7 @@ function PastGames() {
 
   return (
         <div className="pastGames">
-          <div className="date">{today}</div>
+          <div className="date">{yesterday}</div>
           {gameData && (gameData.games).map((games_now) => (
             (games_now.game_data).map((game) => (
               <Scores game={game} />

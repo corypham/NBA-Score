@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from 'react'
 import axios from "axios";
-import './live_scores.css';
+import './scores.css';
 
 function LiveScores(props) {
   return (

@@ -8,7 +8,7 @@ function PastGames() {
    // new line start
   const [gameData, setGameScores] = useState(null);
 
-  let yesterday = new Date().toLocaleDateString() - 1;
+  let yesterday = new Date(new Date().setDate(new Date().getDate()-1)).toLocaleDateString();
 
   function get_past_games() {
     axios({

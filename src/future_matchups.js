@@ -8,7 +8,7 @@ function FutureMatchups() {
    // new line start
   const [gameData, setGameScores] = useState(null);
 
-  let today = new Date().toLocaleDateString();
+  let tomorrow = new Date(new Date().setDate(new Date().getDate()+1)).toLocaleDateString();
 
   function get_future_matchups() {
     axios({
@@ -36,7 +36,7 @@ function FutureMatchups() {
 
   return (
         <div className="futureMatchups">
-          <div className="date">{today}</div>
+          <div className="date">{tomorrow}</div>
           {gameData && (gameData.games).map((games_now) => (
             (games_now.game_data).map((game) => (
               <Scores game={game} />

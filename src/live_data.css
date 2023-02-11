@@ -23,5 +23,7 @@
   }
 
 .date {
-
+  font-family: 'Poppins';
+  margin-top: 7px;
+  font-size: 130%;
 }

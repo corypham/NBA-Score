@@ -46,6 +46,32 @@
   border-color : #D9D9D9;
 }
 
+.dropdown {
+  font-family: 'Quicksand';
+  margin-top: 15px;
+  font-size: 125%;
+  font-weight: 600;
+  letter-spacing: 0em;
+}
+
+.gameType {
+  font-family: 'Quicksand';
+  margin-top: 15px;
+  font-size: 75%;
+  font-weight: 400;
+  letter-spacing: 0em;
+  border-radius: 100px;
+  padding: 5px;
+}
+
+.dropdownText {
+  font-family: 'Quicksand';
+  margin-top: 15px;
+  font-size: 100%;
+  font-weight: 400;
+  letter-spacing: 0em;
+}
+
 .top {
   position: sticky;
   bottom: 20px;

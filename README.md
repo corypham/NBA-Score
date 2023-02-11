@@ -1,3 +1,6 @@
+#Credit
+- To SportsLogos.Net for the team logos and nba logos and other images and stuff
+
 # Notes
 - start branch names with "[first name]-"
 - Setup guide: https://docs.google.com/document/d/11pSa0CDOkddnlXhQD2_XkblESNOpaOpD40cc9Yef2D4/edit

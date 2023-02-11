@@ -2,6 +2,7 @@
   background-color: white;
   border-radius: 40px;
   width: 70%;
+  height: 100%;
   margin: 2.5%;
   padding: 2%;
   display: flex;
@@ -10,7 +11,7 @@
 
 .teamName {
   font-family: Poppins;
-  font-size: 200%;
+  font-size: 175%;
   font-style: italic;
   font-weight: 800;
   letter-spacing: 0em;
@@ -35,6 +36,7 @@
   align-items: center;
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .logo {
@@ -42,7 +44,11 @@
 }
 
 .vl {
-  border-left: 1px solid black;
-  height: 100px;
-  float: center;
+  position: absolute;
+  border-left:1.5px solid #6D6D6D;
+  border-right: 1.5px solid #6D6D6D;
+  border-radius: 50px;
+  height: 35%;
+  left: 50%;
+  width: 0.1px;
 }

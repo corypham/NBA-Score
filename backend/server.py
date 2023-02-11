@@ -73,6 +73,7 @@ def get_past_games():
             game_data[i] = {
                 # "gameStatus": (pg[i])['GAME_STATUS_TEXT'],
                 "gameDate": (pg[2*i+1])['GAME_DATE_EST'],
+                "gameStatus": 'Final',
                 "awayTeamData": {
                     "logoURL": (pg[2*i+1])['TEAM_ABBREVIATION'],
                     "name": teams.find_team_name_by_id((pg[2*i+1])['TEAM_ID'])['nickname'],
@@ -111,12 +112,13 @@ def get_future_matchups():
         board = board_of_scores.Scoreboard(day_offset=num_offset)
         future_games = board.get_normalized_dict()
         pg = future_games['LineScore']
+        s = future_games['GameHeader']
 
         game_data = [{}] * (math.ceil(len(pg)/2))
         for i in range (math.ceil(len(pg)/2)):
             game_data[i] = {
-                # "gameStatus": (pg[i])['GAME_STATUS_TEXT'],
-                "gameDate": (pg[2*i+1])['GAME_DATE_EST'],
+                "gameDate": (s[i])['GAME_DATE_EST'],
+                "gameStatus": (s[i])['GAME_STATUS_TEXT'],
                 "awayTeamData": {
                     "logoURL": (pg[2*i+1])['TEAM_ABBREVIATION'],
                     "name": teams.find_team_name_by_id((pg[2*i+1])['TEAM_ID'])['nickname'],

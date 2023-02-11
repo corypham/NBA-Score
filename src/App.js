@@ -28,11 +28,11 @@ function App() {
       {/* <header className="App-header"> </header> */}
       <div className="games">
         <div className="dropdown">
-          <label for="gameType">Choose Game Type:</label>
+          <label for="gameType">Choose Game Day:</label>
           <select className="gameType" id="gameType" value={game_type} onChange={handleChange}>
-            <option value="live">Live</option>
-            <option value="past">Past</option>
-            <option value="future">Future</option>
+            <option value="live">Today</option>
+            <option value="past">Yesterday</option>
+            <option value="future">Tomorrow</option>
           </select>
         </div>
         {game_type==='live' && <LiveData />}

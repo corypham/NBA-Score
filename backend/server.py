@@ -1,40 +1,74 @@
-# Import flask and datetime module for showing date and time
+# Imports
 from flask import Flask
 import json
-  
+import math
+from datetime import datetime, timezone, date, timedelta
+from flask_cors import CORS
+
+from nba_api.live.nba.endpoints import scoreboard
+from nba_api.stats.static import teams
+from nba_api.stats.endpoints import scoreboard as board_of_scores
 # Initializing flask app
 app = Flask(__name__)
 
-# flask
+cors = CORS(app)
 
-from datetime import datetime, timezone, date, timedelta
-from dateutil import parser
-from dateutil.tz import gettz
+def get_date(num_days):
+    if num_days == -1:
+        return 'Yesterday'
+    elif num_days == 1:
+        return 'Tomorrow'
+    elif num_days == 0:
+        return 'Today'
+    else:
+        today = date.today()
+        day = today + timedelta(days = num_days)
+        return day.strftime('%m/%d/%Y')
 
 # fetch live data
-from nba_api.live.nba.endpoints import scoreboard
 def fetch():
     board = scoreboard.ScoreBoard()
     print("ScoreBoardDate: " + board.score_board_date)
-    games = board.games.get_dict()
-    # games_json = board.games.get_json()
-    game_data = [{}] * len(games)
-    for i in range (len(games)):
-        game_data[i] = {
-            "gameStatus": (games[i])['gameStatusText'],
-            "awayTeamData": {
-                # "logoURL": './assets/' + (games[i])['awayTeam']['teamTricode'] + '.png',
-                "logoURL": (games[i])['awayTeam']['teamTricode'],
-                "name": (games[i])['awayTeam']['teamName'],
-                "score": (games[i])['awayTeam']['score']
-                }, 
-            "homeTeamData": {
-                "logoURL": (games[i])['homeTeam']['teamTricode'],
-                "name": (games[i])['homeTeam']['teamName'],
-                "score": (games[i])['homeTeam']['score']
-                }, 
-            }
-        print("hello world", game_data[i]['awayTeamData']['logoURL'])
+    today = date.today()
+    if board.score_board_date == today:
+        games = board.games.get_dict()
+        game_data = [{}] * len(games)
+        for i in range (len(games)):
+            game_data[i] = {
+                "gameStatus": (games[i])['gameStatusText'],
+                "awayTeamData": {
+                    "logoURL": (games[i])['awayTeam']['teamTricode'],
+                    "name": (games[i])['awayTeam']['teamName'],
+                    "score": (games[i])['awayTeam']['score']
+                    }, 
+                "homeTeamData": {
+                    "logoURL": (games[i])['homeTeam']['teamTricode'],
+                    "name": (games[i])['homeTeam']['teamName'],
+                    "score": (games[i])['homeTeam']['score']
+                    }, 
+                }
+    else:
+        board = board_of_scores.Scoreboard()
+        live_games = board.get_normalized_dict()
+        pg = live_games['LineScore']
+        s = live_games['GameHeader']
+
+        game_data = [{}] * (math.ceil(len(pg)/2))
+        for i in range (math.ceil(len(pg)/2)):
+            game_data[i] = {
+                "gameDate": (s[i])['GAME_DATE_EST'],
+                "gameStatus": (s[i])['GAME_STATUS_TEXT'],
+                "awayTeamData": {
+                    "logoURL": (pg[2*i])['TEAM_ABBREVIATION'],
+                    "name": teams.find_team_name_by_id((pg[2*i])['TEAM_ID'])['nickname'],
+                    "score": (pg[2*i])['PTS'],
+                    }, 
+                "homeTeamData": {
+                    "logoURL": (pg[2*i+1])['TEAM_ABBREVIATION'],
+                    "name": teams.find_team_name_by_id((pg[2*i+1])['TEAM_ID'])['nickname'],
+                    "score": (pg[2*i+1])['PTS'],
+                    }, 
+                }
     return game_data
 
 # Route for seeing live data
@@ -46,40 +80,40 @@ def get_live_data():
     }
 
 # get past games
-from nba_api.stats.endpoints import scoreboard as pastscores
 def get_past_games():
     today = date.today()
-    board = pastscores.Scoreboard(day_offset='-1')
-    past_games_json = board.get_json()
-    #  = board.get_dict()
-    # game_data = [{}] * len(games)
-    # test = [{}] * len(games.games.resource.resultSets.name.rowSet)
-    # # past_week_data = [{}] * 2
-    # for i in range (len(games.games.resource.resultSets.name.rowSet)):
-    #     test[i] = games.games.resource.resultSets.name.rowSet[i]
-    # for i in range (2):
-    #     week_games = games[games.LAST_GAME_DATE_EST=='2023-01-08']
-    #     past_week_data[i] = {
-    #         "date": today,
-    #         "games": week_games,
-    #     }
+    past_game_data = [{}] * 1
 
-    #             "gameStatus": (games[i])['gameStatusText'],
-    #             "awayTeamData": {
-    #                 "logoURL": './assets/' + (games[i])['awayTeam']['teamTricode'] + '.png',
-    #                 "logoURL": (games[i])['awayTeam']['teamTricode'],
-    #                 "name": (games[i])['awayTeam']['teamName'],
-    #                 "score": (games[i])['awayTeam']['score']
-    #                 }, 
-    #             "homeTeamData": {
-    #                 "logoURL": (games[i])['homeTeam']['teamTricode'],
-    #                 "name": (games[i])['homeTeam']['teamName'],
-    #                 "score": (games[i])['homeTeam']['score']
-    #                 }, 
-    #             }
-    #         }
-    #     print("hello world", game_data[i]['awayTeamData']['logoURL'])
-    return past_games_json
+    for d in range (0, 1):
+        num_offset = (d * (-1)) - 1
+        board = board_of_scores.Scoreboard(day_offset=num_offset)
+        past_games = board.get_normalized_dict()
+        pg = past_games['LineScore']
+
+        game_data = [{}] * (math.ceil(len(pg)/2))
+        for i in range (math.ceil(len(pg)/2)):
+            game_data[i] = {
+                # "gameStatus": (pg[i])['GAME_STATUS_TEXT'],
+                "gameDate": (pg[2*i])['GAME_DATE_EST'],
+                "gameStatus": 'Final',
+                "awayTeamData": {
+                    "logoURL": (pg[2*i])['TEAM_ABBREVIATION'],
+                    "name": teams.find_team_name_by_id((pg[2*i])['TEAM_ID'])['nickname'],
+                    "score": (pg[2*i])['PTS']
+                    }, 
+                "homeTeamData": {
+                    "logoURL": (pg[2*i+1])['TEAM_ABBREVIATION'],
+                    "name": teams.find_team_name_by_id((pg[2*i+1])['TEAM_ID'])['nickname'],
+                    "score": (pg[2*i+1])['PTS']
+                    }, 
+                }
+        past_game_data[d] = {
+            'game_day': get_date(num_offset),
+            'offset': num_offset,
+            'game_data': game_data,
+        }
+    return past_game_data
+
 
 # Route for seeing past games
 @app.route('/data/past')
@@ -91,7 +125,46 @@ def get_past_data():
 
 # get future matchups
 def get_future_matchups():
-    print("WIP")
+    today = date.today()
+    future_game_data = [{}] * 1
+
+    for d in range (0, 1):
+        num_offset = d + 1
+        board = board_of_scores.Scoreboard(day_offset=num_offset)
+        future_games = board.get_normalized_dict()
+        pg = future_games['LineScore']
+        s = future_games['GameHeader']
+
+        game_data = [{}] * (math.ceil(len(pg)/2))
+        for i in range (math.ceil(len(pg)/2)):
+            game_data[i] = {
+                "gameDate": (s[i])['GAME_DATE_EST'],
+                "gameStatus": (s[i])['GAME_STATUS_TEXT'],
+                "awayTeamData": {
+                    "logoURL": (pg[2*i])['TEAM_ABBREVIATION'],
+                    "name": teams.find_team_name_by_id((pg[2*i])['TEAM_ID'])['nickname'],
+                    "score": '-'
+                    }, 
+                "homeTeamData": {
+                    "logoURL": (pg[2*i+1])['TEAM_ABBREVIATION'],
+                    "name": teams.find_team_name_by_id((pg[2*i+1])['TEAM_ID'])['nickname'],
+                    "score": '-'
+                    }, 
+                }
+        future_game_data[d] = {
+            'game_day': get_date(num_offset),
+            'offset': num_offset,
+            'game_data': game_data,
+        }
+    return future_game_data
+
+# Route for seeing future games
+@app.route('/data/future')
+def get_future_data():
+    future_games = get_future_matchups()
+    return {
+        "games": json.dumps(future_games),
+    }
   
 # Running app
 if __name__ == '__main__':

@@ -13,7 +13,8 @@ function LiveData() {
   function get_live_data() {
     axios({
       method: "GET",
-      url:"/data/live",
+      url: "http://localhost:5000/data/live",
+      headers: { 'Access-Control-Allow-Origin': "http://localhost:5000" }
     })
     .then((response) => {
       const res = response.data

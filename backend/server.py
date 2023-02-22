@@ -129,7 +129,7 @@ def get_future_matchups():
     future_game_data = [{}] * 1
 
     for d in range (0, 1):
-        num_offset = d + 1
+        num_offset = d + 2 #change this back to 1
         board = board_of_scores.Scoreboard(day_offset=num_offset)
         future_games = board.get_normalized_dict()
         pg = future_games['LineScore']

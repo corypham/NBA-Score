@@ -13,7 +13,7 @@ function PastGames() {
   function get_past_games() {
     axios({
       method: "GET",
-      url:"/data/past",
+      url:"http://localhost:5000/data/past",
     })
     .then((response) => {
       const res = response.data

@@ -3,12 +3,15 @@ from flask import Flask
 import json
 import math
 from datetime import datetime, timezone, date, timedelta
+from flask_cors import CORS
 
 from nba_api.live.nba.endpoints import scoreboard
 from nba_api.stats.static import teams
 from nba_api.stats.endpoints import scoreboard as board_of_scores
 # Initializing flask app
 app = Flask(__name__)
+
+cors = CORS(app)
 
 def get_date(num_days):
     if num_days == -1:
@@ -58,12 +61,12 @@ def fetch():
                 "awayTeamData": {
                     "logoURL": (pg[2*i])['TEAM_ABBREVIATION'],
                     "name": teams.find_team_name_by_id((pg[2*i])['TEAM_ID'])['nickname'],
-                    "score": '-'
+                    "score": (pg[2*i])['PTS'],
                     }, 
                 "homeTeamData": {
                     "logoURL": (pg[2*i+1])['TEAM_ABBREVIATION'],
                     "name": teams.find_team_name_by_id((pg[2*i+1])['TEAM_ID'])['nickname'],
-                    "score": '-'
+                    "score": (pg[2*i+1])['PTS'],
                     }, 
                 }
     return game_data
@@ -126,7 +129,7 @@ def get_future_matchups():
     future_game_data = [{}] * 1
 
     for d in range (0, 1):
-        num_offset = d + 1
+        num_offset = d + 1 #change this back to 1
         board = board_of_scores.Scoreboard(day_offset=num_offset)
         future_games = board.get_normalized_dict()
         pg = future_games['LineScore']

@@ -10,7 +10,7 @@
 
 - Guide to Flexbox (for CSS): https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 - endpoints: https://github.com/swar/nba_api/tree/master/docs/nba_api/stats/endpoints
-### To see stuffL
+### To see stuff:
 - The actual website: http://localhost:3000/nba-scores
 - The data being pulled:
   - past: http://localhost:5000/data/past

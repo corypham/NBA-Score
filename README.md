@@ -1,12 +1,21 @@
+# Credit
+- To SportsLogos.Net for the team logos and nba logos and other images and stuff
+
 # Notes
 - start branch names with "[first name]-"
-- I think you have to install node.js (will add more since i probably forgot something)
-- You also need python and flask (pip install flask)
-- create a virtual environment in /backend
-- py -m venv env
-- .\env\Scripts\activate
-- pip install python-dotenv
-- flask run
+- Setup guide: https://docs.google.com/document/d/11pSa0CDOkddnlXhQD2_XkblESNOpaOpD40cc9Yef2D4/edit
+- Trello (tasks): https://trello.com/b/2YL7jXxF/team-yosemite
+- Figma (design): https://www.figma.com/file/tnVeNgcaX7KmKaHoXHsK7E/winter-project?node-id=0%3A1&t=mxSor2YgfduxUmX0-0
+- Google Drive (misc): https://drive.google.com/drive/u/0/folders/1rMOjpth7AV-Gj8IPHVttdzXdti4Gxlps
+
+- Guide to Flexbox (for CSS): https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+- endpoints: https://github.com/swar/nba_api/tree/master/docs/nba_api/stats/endpoints
+### To see stuff:
+- The actual website: http://localhost:3000/nba-scores
+- The data being pulled:
+  - past: http://localhost:5000/data/past
+  - live: http://localhost:5000/data/live
+  - future: http://localhost:5000/data/future
 
 
 # Getting Started with Create React App

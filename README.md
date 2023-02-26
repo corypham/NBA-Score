@@ -1,3 +1,14 @@
+# Notes
+- start branch names with "[first name]-"
+- I think you have to install node.js (will add more since i probably forgot something)
+- You also need python and flask (pip install flask)
+- create a virtual environment in /backend
+- py -m venv env
+- .\env\Scripts\activate
+- pip install python-dotenv
+- flask run
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

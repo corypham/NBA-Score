@@ -16,6 +16,7 @@
   font-weight: 800;
   letter-spacing: 0em;
   display: flex;
+  justify-content: center;
 }
 
 .score {
@@ -48,7 +49,7 @@
   border-left:1.5px solid #6D6D6D;
   border-right: 1.5px solid #6D6D6D;
   border-radius: 50px;
-  height: 35%;
+  height: 30%;
   left: 50%;
   width: 0.1px;
 }

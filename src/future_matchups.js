@@ -13,7 +13,7 @@ function FutureMatchups() {
   function get_future_matchups() {
     axios({
       method: "GET",
-      url:"/data/future",
+      url:"http://localhost:5000/data/future",
     })
     .then((response) => {
       const res = response.data
